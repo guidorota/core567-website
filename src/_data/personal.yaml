@@ -5,7 +5,6 @@ address: |-
   12345, city
   Tel: +34 928231911
 platforms:
-  github: 'https://github.com/madrilene/eleventy-excellent'
-  mastodon: 'https://front-end.social/@lene'
-  bluesky: 'https://bsky.app/profile/lenesaile.com'
-  kofi: 'https://ko-fi.com/lenesaile'
+  github: 'https://github.com/guidorota/'
+  x: 'https://x.com/guidorota'
+  linkedin: 'https://www.linkedin.com/in/guido-rota-0704b480/'
