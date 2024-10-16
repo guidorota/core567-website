@@ -88,4 +88,3 @@ export const viewRepo = {
   allow: true,
   infoText: 'View this page on GitHub'
 };
-export const easteregg = true;
