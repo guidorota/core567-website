@@ -17,7 +17,7 @@ dotenv.config();
 // add yaml support
 import yaml from 'js-yaml';
 
-//  config import
+// config import
 import {getAllPosts, onlyMarkdown, tagList} from './src/_config/collections.js';
 import events from './src/_config/events.js';
 import filters from './src/_config/filters.js';
@@ -27,6 +27,12 @@ import shortcodes from './src/_config/shortcodes.js';
 export default async function (eleventyConfig) {
   eleventyConfig.addWatchTarget('./src/assets/**/*.{css,js,svg,png,jpeg}');
   eleventyConfig.addWatchTarget('./src/_includes/**/*.{webc}');
+
+  // Required to circumvent a bug in Chokidar when using Windows WSL and the project is outside of ~
+  eleventyConfig.setChokidarConfig({
+		usePolling: true,
+		interval: 500,
+	});
 
   // --------------------- layout aliases
   eleventyConfig.addLayoutAlias('base', 'base.njk');
