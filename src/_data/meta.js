@@ -1,5 +1,5 @@
 export const url = process.env.URL || 'http://localhost:8080';
-export const siteName = 'Guido Rota';
+export const siteName = 'CODE 567';
 export const siteDescription = 'Personal website of Guido Rota.';
 export const siteType = 'Person'; // schema
 export const locale = 'en_EN';
@@ -7,18 +7,15 @@ export const lang = 'en';
 export const skipContent = 'Skip to content';
 export const author = {
   name: 'Guido Rota',
-  avatar: '/icon-512x512.png', // path to the author's avatar. In this case just using a favicon.
-  email: 'hello@guidorota.com',
-  website: 'https://www.guidorota.com'
+  avatar: '/icon-512x512.png' // path to the author's avatar. In this case just using a favicon.
 };
 export const creator = {
   name: 'Guido Rota',
   email: 'hello@guidorota.com',
-  website: 'https://www.guidorota.com',
   social: 'https://x.com/guidorota'
 };
 export const pathToSvgLogo = 'src/assets/svg/misc/logo.svg'; // used for favicon generation
-export const themeColor = '#DD4462'; //  Manifest: defines the default theme color for the application
+export const themeColor = '#2465BC'; //  Manifest: defines the default theme color for the application
 export const themeBgColor = '#FBFBFB'; // Manifest: defines a placeholder background color for the application page to display before its stylesheet is loaded
 export const opengraph_default = '/assets/images/template/opengraph-default.jpg'; // fallback/default meta image
 export const opengraph_default_alt =

@@ -1,50 +1,25 @@
 ---
 layout: base
 permalink: /index.html
-title: 'Eleventy Excellent'
-description: 'Eleventy starter using modern CSS, fluid type, fluid spacing, flexible layout and progressive enhancement.'
-blog:
-  title: 'Blog'
-  intro: "I'm showing the last 4 blog posts, but there might be more!"
+title: 'Code 567'
+description: 'Sharing thoughts and rants about engineering and life'
 ---
 
 <div class="wrapper">
   <header class="full | section" style="--spot-color: var(--color-primary)">
     <div class="section__inner flow region">
       <h1 class="text-center text-base-light">{{ title }}</h1>
+      <div class="font-display text-center text-base-light">
+        Thoughts and rants about engineering and life
+      </div>
     </div>
 
     {% svg "divider/high-to-low", null, "seperator" %}
   </header>
 
-  <article class="full | region">
-    <div class="wrapper flow prose">
-      <h2 id="an-eleventy-starter">An Eleventy starter</h2>
-      <p>
-        Built around a CSS workflow that emphasizes guiding browser styling rather than micromanaging it. It
-        incorporates progressive enhancement, fluid type and spacing, and utilizes modern CSS features for
-        layout. The goal is to develop frontends that provide a great experience across all devices,
-        connection speeds, and usage contexts.
-      </p>
-      <p>
-        <strong>This is version 3.</strong> I keep a
-        <a href="https://github.com/madrilene/eleventy-excellent/tree/v1">branch of v1</a> and
-        <a href="https://github.com/madrilene/eleventy-excellent/tree/v2">v2</a> because I have changed a lot
-        of things. I have tried to <a href="/get-started/#docs-lol">document</a> most features and
-        methodologies.
-      </p>
-      <p><strong>Have fun</strong> and let me know if you find any issues or have ideas for improvements!</p>
-    </div>
-  </article>
-
   <section class="full | region">
     <div class="wrapper flow prose">
-      <h2>{{ blog.title }}</h2>
-      <!-- blog intro text is optional. -->
-
-      {% if blog.intro %}
-        <p>{{ blog.intro }}</p>
-      {% endif %}
+      <h2>What's new?</h2>
 
       <div class="feature |  region">
         <custom-masonry layout="50-50">
@@ -56,6 +31,9 @@ blog:
 					{% endeach %}
         </custom-masonry>
       </div>
+
+      <a href="blog/index.html">Older posts</a>
+
     </div>
   </section>
 </div>
