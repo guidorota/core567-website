@@ -9,11 +9,5 @@
     {%- endfor -%}
   </div>
 
-  {% css "inline" %}
-    {% include "css/gallery.css" %}
-  {% endcss %}
-
-  {% js "defer" %}
-    {% include "scripts/gallery.js" %}
-  {% endjs %}
+  <script type="module" src="/assets/scripts/bundle/gallery.js"></script>
 </is-land>

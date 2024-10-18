@@ -21,19 +21,20 @@
     <base href="{{ page.url }}" />
 
     <!-- 3 synchronous js  -->
-    {% include "head/js-inline.njk" %}
+    <script type="module" src="/assets/scripts/bundle/theme-toggle.js"></script>
+    <script type="module" src="/assets/scripts/bundle/is-land.js"></script>
 
     <!-- 4 schema settings -->
     {% include "head/schema.njk" %}
 
     <!-- 5 CSS  -->
-    {% include "head/css-inline.njk" %}
+    <link rel="stylesheet" href="/assets/css/bundle.css?{{ assetHash }}">
 
     <!-- 6 preloads  -->
     {% include "head/preloads.njk" %}
 
     <!-- 7 defer  -->
-    {% include "head/js-defer.njk" %}
+    <!-- none -->
 
     <!-- 8 meta tags, icons, open graph etc.  -->
     {% include "head/meta-info.njk" %}

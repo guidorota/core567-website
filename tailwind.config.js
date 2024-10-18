@@ -25,6 +25,7 @@ const lineHeight = tokensToTailwind(textLeadingTokens.items);
 const spacing = tokensToTailwind(clampGenerator(spacingTokens.items));
 
 export default {
+  mode: 'jit',
   content: ['./src/**/*.{html,js,md,njk,liquid,webc}'],
   presets: [],
   theme: {

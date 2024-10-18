@@ -48,6 +48,7 @@ export default async function (eleventyConfig) {
   // ---------------------  Plugins
   eleventyConfig.addPlugin(plugins.htmlConfig);
   eleventyConfig.addPlugin(plugins.cssConfig);
+
   eleventyConfig.addPlugin(plugins.jsConfig);
   eleventyConfig.addPlugin(plugins.drafts);
 
@@ -59,9 +60,6 @@ export default async function (eleventyConfig) {
     components: ['./src/_includes/webc/*.webc'],
     useTransform: true
   });
-
-  // ---------------------  bundle
-  eleventyConfig.addBundle('css', {hoist: true});
 
   // 	--------------------- Library and Data
   eleventyConfig.setLibrary('md', plugins.markdownLib);
