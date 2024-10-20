@@ -1,4 +1,5 @@
 import esbuild from 'esbuild';
+import * as path from 'path';
 
 export const jsConfig = eleventyConfig => {
   eleventyConfig.addTemplateFormats('js');
