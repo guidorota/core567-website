@@ -70,17 +70,3 @@ export const themeSwitch = {
   light: 'light',
   dark: 'dark'
 };
-export const greenweb = {
-  // this goes into src/common/greenweb.njk
-  providers: {
-    // if you want to add more than one, edit the array directly.
-    domain: 'netlify.com',
-    service: 'cdn'
-  },
-  credentials: {
-    // optional, eg: 	{ domain='my-org.com', doctype = 'webpage', url = 'https://my-org.com/our-climate-record'}
-    domain: '',
-    doctype: '',
-    url: ''
-  }
-};
