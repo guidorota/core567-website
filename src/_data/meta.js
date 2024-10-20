@@ -1,10 +1,9 @@
 export const url = process.env.URL || 'http://localhost:8080';
 export const siteName = 'CODE 567';
-export const siteDescription = 'Personal website of Guido Rota.';
+export const siteDescription = 'Thoughts and rants about engineering and life';
 export const siteType = 'Person'; // schema
 export const locale = 'en_EN';
 export const lang = 'en';
-export const skipContent = 'Skip to content';
 export const author = {
   name: 'Guido Rota',
   avatar: '/icon-512x512.png' // path to the author's avatar. In this case just using a favicon.
