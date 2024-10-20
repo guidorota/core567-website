@@ -42,7 +42,6 @@ https://eleventy-excellent.netlify.app/
 - RSS feed (now you can add more than one)
 - Links to platforms and social media profiles
 - Mastodon domain verification snippet
-- carbon.txt - to show that their digital infrastructure runs on green electricity
 - Accessible dark and light mode based on user preference and custom toggle
 - Tags in blog posts
 - Accessible blog pagination
