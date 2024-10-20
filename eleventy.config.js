@@ -14,9 +14,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-// add yaml support
-import yaml from 'js-yaml';
-
 // config import
 import {getAllPosts, onlyMarkdown, tagList} from './src/_config/collections.js';
 import events from './src/_config/events.js';
@@ -63,7 +60,6 @@ export default async function (eleventyConfig) {
 
   // 	--------------------- Library and Data
   eleventyConfig.setLibrary('md', plugins.markdownLib);
-  eleventyConfig.addDataExtension('yaml', contents => yaml.load(contents));
 
   // --------------------- Filters
   eleventyConfig.addFilter('toIsoString', filters.toISOString);

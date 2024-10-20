@@ -14,6 +14,11 @@ export const creator = {
   email: 'hello@guidorota.com',
   social: 'https://x.com/guidorota'
 };
+export const social = {
+  github: 'https://github.com/guidorota/',
+  x: 'https://x.com/guidorota',
+  linkedin: 'https://www.linkedin.com/in/guido-rota-0704b480/'
+};
 export const pathToSvgLogo = 'src/assets/svg/misc/logo.svg'; // used for favicon generation
 export const themeColor = '#2465BC'; //  Manifest: defines the default theme color for the application
 export const themeBgColor = '#FBFBFB'; // Manifest: defines a placeholder background color for the application page to display before its stylesheet is loaded

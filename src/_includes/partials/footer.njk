@@ -25,7 +25,7 @@
           {% svg "misc/rss" %}
         </a>
 
-        {% for key, value in personal.platforms %}
+        {% for key, value in meta.social %}
           {% if value != "" %}
             <!-- regular platforms -->
             <a href="{{ value }}" target="_blank" rel="me">
