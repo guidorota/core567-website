@@ -11,7 +11,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "favicons": "node ./src/_config/setup/generate-favicons.js",
-    "screenshots": "node ./src/_config/setup/generate-screenshots.js",
     "dev:clean": "rimraf src/assets/og-images",
     "debug:11ty": "cross-env DEBUG=Eleventy* ELEVENTY_ENV=development eleventy --serve --watch",
     "dev:11ty": "cross-env ELEVENTY_ENV=development eleventy --serve --watch",
