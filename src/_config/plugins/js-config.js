@@ -6,7 +6,12 @@ export const jsConfig = eleventyConfig => {
   eleventyConfig.addExtension('js', {
     outputFileExtension: 'js',
     compile: async (_, inputPath) => {
-      if (!(inputPath || '').startsWith('./src/assets/scripts/')) {
+      const sanitisedInputPath = inputPath || '';
+      if (!sanitisedInputPath.startsWith('./src/assets/scripts/')) {
+        return;
+      }
+
+      if (path.basename(sanitisedInputPath).startsWith('_')) {
         return;
       }
 

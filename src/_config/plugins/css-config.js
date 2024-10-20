@@ -4,13 +4,19 @@ import postcssImportExtGlob from 'postcss-import-ext-glob';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
+import * as path from 'path';
 
 export const cssConfig = eleventyConfig => {
   eleventyConfig.addTemplateFormats('css');
   eleventyConfig.addExtension('css', {
     outputFileExtension: 'css',
     compile: async (content, inputPath) => {
-      if (!(inputPath || '').startsWith('./src/assets/css/')) {
+      const sanitisedInputPath = inputPath || '';
+      if (!sanitisedInputPath.startsWith('./src/assets/css/')) {
+        return;
+      }
+
+      if (path.basename(sanitisedInputPath).startsWith('_')) {
         return;
       }
 
