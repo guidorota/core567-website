@@ -15,6 +15,9 @@ import {htmlConfig} from './plugins/html-config.js';
 import {cssConfig} from './plugins/css-config.js';
 import {jsConfig} from './plugins/js-config.js';
 
+// OpenGraph svg to jpg conversion
+import {opengraphSvgToJpg} from './plugins/opengraph-svg-to-jpg.js'
+
 export default {
   EleventyRenderPlugin,
   rss,
@@ -24,5 +27,6 @@ export default {
 	drafts,
   htmlConfig,
   cssConfig,
-  jsConfig
+  jsConfig,
+  opengraphSvgToJpg
 };

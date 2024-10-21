@@ -16,7 +16,6 @@ dotenv.config();
 
 // config import
 import {getAllPosts, onlyMarkdown, tagList} from './src/_config/collections.js';
-import events from './src/_config/events.js';
 import filters from './src/_config/filters.js';
 import plugins from './src/_config/plugins.js';
 import shortcodes from './src/_config/shortcodes.js';
@@ -53,6 +52,8 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(plugins.rss);
   eleventyConfig.addPlugin(plugins.syntaxHighlight);
 
+  eleventyConfig.addPlugin(plugins.opengraphSvgToJpg);
+
   eleventyConfig.addPlugin(plugins.webc, {
     components: ['./src/_includes/webc/*.webc'],
     useTransform: true
@@ -76,11 +77,6 @@ export default async function (eleventyConfig) {
   eleventyConfig.addShortcode('svg', shortcodes.svgShortcode);
   eleventyConfig.addShortcode('image', shortcodes.imageShortcode);
   eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`);
-
-  // --------------------- Events ---------------------
-  if (process.env.ELEVENTY_RUN_MODE === 'serve') {
-    eleventyConfig.on('eleventy.after', events.svgToJpeg);
-  }
 
   // --------------------- Passthrough File Copy
 
