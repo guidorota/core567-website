@@ -1,5 +1,5 @@
 export const url = process.env.URL || 'http://localhost:8080';
-export const siteName = 'CODE 567';
+export const siteName = 'Core 567';
 export const siteDescription = 'Thoughts and rants about engineering and life';
 export const siteType = 'Person'; // schema
 export const locale = 'en_EN';
