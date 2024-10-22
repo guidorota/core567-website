@@ -28,11 +28,22 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Download website files
       uses: actions/download-artifact@v4
       with:
         name: website
-    - name: Display results
-      run: ls -R
-
+        path: dist
+    - name: Setup AWS CLI
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        audience: sts.amazonaws.com
+        aws-region: us-east-1
+        role-to-assume: ${{vars.CORE567_UPLOAD_ROLE_ARN}}
+    - name: Upload files to S3 bucket
+      run: aws s3 sync dist ${{vars.CORE567_BUCKET_NAME}} --delete
+    - name: Invalidate Cloudfront cache
+      run: aws cloudfront create-invalidation --distribution-id ${{vars.CORE567_DISTRIBUTION_ID}} --paths '/*'
