@@ -34,5 +34,5 @@ jobs:
       with:
         name: website
     - name: Display results
-      run: ls -R dist
+      run: ls -R
 
