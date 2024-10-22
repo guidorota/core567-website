@@ -13,8 +13,7 @@
     "favicons": "node ./src/_config/setup/generate-favicons.js",
     "debug:11ty": "cross-env DEBUG=Eleventy* ELEVENTY_ENV=development eleventy --serve --watch",
     "dev:11ty": "cross-env ELEVENTY_ENV=development eleventy --serve --watch",
-    "build:11ty": "cross-env ELEVENTY_ENV=production eleventy",
-    "build": "run-s clean build:*"
+    "build:11ty": "cross-env ELEVENTY_ENV=production eleventy"
   },
   "keywords": [],
   "repository": {

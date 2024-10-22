@@ -20,4 +20,4 @@ jobs:
         node-version: ${{env.node-version}}
         cache: 'npm'
     - run: npm install
-    - run: npm run build
+    - run: npm run build:11ty
