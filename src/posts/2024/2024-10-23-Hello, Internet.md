@@ -1,7 +1,7 @@
 ---
 title: 'Hello, Internet'
 description: 'The first blog in Core 567'
-date: 2024-07-21
+date: 2024-10-23
 ---
 
 It took a long time but it's finally done. Core 567 is up.
