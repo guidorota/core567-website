@@ -1,23 +1,25 @@
 ---
 title: About
 permalink: /about/index.html
-description: 'Eleventy Excellent is inspired bythe companion website of Andy Bell’s talk "Be the browser’s mentor, not its micromanager".'
+description: 'Information about '
 layout: page
 ---
 
-This starter uses modern CSS, fluid type & space, flexible Layouts and Progressive Enhancement, wrapped in a basic template.
+<custom-masonry layout="50-50">
+  <div class="flow">
+    {% image "./src/assets/images/myself/mugshot.jpg" %}
+  </div>
+  <div class="flow">
+    <p>
+    Hi, I'm Guido Rota, a software engineer by training and passion.
+    </p>
 
-It is built around the CSS boilerplate by Andy Bell and inspired by Andy's talk **'Be the browser’s mentor, not its micromanager'**.
+    <p>
+    And this is Core 567, the site where I publish my thoughts and rants about technology, hobbies, and life.
+    </p>
 
-If you want to know exactly how it all works, [read this article on piccalil.li](https://piccalil.li/blog/a-css-project-boilerplate/).
-
-The aim is to spread the idea and use of this _excellent_ workflow. To work with it efficiently you should be familiar with [cube.fyi](https://cube.fyi/), [utopia.fyi](https://utopia.fyi/) and [every-layout.dev](https://every-layout.dev/).
-
-- buildexcellentwebsit.es
-- Remix the original: https://glitch.com/edit/#!/remix/build-excellent-websites
-- Study the [original CSS boilerplate](https://github.com/Set-Creative-Studio/cube-boilerplate/tree/main)
-
-## Watch the talk
-
-<div><custom-youtube @slug="JqnMI1AXl6w" @label="Andy Bell – Be the browser’s mentor, not its micromanager"> </custom-youtube></div>
-
+    <p>
+    I've been working with software for more than 20 years, and playing with it for even longer. I am also passionate about music, photography, and languages.
+    </p>
+  </div>
+</custom-masonry>
