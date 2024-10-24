@@ -1,6 +1,6 @@
 ---
 title: 'Building Core 567 - Part 1'
-description: 'A brief description of how I used 11ty, a static site generator, to build Core 567.'
+description: 'A brief description of how this website was built.'
 date: 2024-10-24
 tags:
   - technology
