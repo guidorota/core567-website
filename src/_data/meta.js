@@ -1,4 +1,4 @@
-export const url = process.env.URL || 'http://localhost:8080';
+export const url = process.env.ELEVENTY_ENV === 'development' ? 'http://localhost:8080' : 'https://core567.com';
 export const siteName = 'Core 567';
 export const siteDescription = 'Thoughts and rants about engineering and life';
 export const siteType = 'Person'; // schema
@@ -21,7 +21,7 @@ export const social = {
 export const pathToSvgLogo = 'src/assets/svg/master-logo.svg'; // used for favicon generation
 export const themeColor = '#2465BC'; //  Manifest: defines the default theme color for the application
 export const themeBgColor = '#FBFBFB'; // Manifest: defines a placeholder background color for the application page to display before its stylesheet is loaded
-export const opengraph_default = '/assets/images/template/opengraph-default.jpg'; // fallback/default meta image
+export const opengraph_default = 'assets/images/template/opengraph-default.jpg'; // fallback/default meta image
 export const opengraph_default_alt = "Visible content: Core 567"; // alt text for default meta image"
 export const blog = {
   // RSS feed

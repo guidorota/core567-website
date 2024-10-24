@@ -44,7 +44,7 @@
   content="{%- if layout == 'post' -%}
     {{- meta.url -}}/assets/og-images/{{ title | slugify }}-preview.jpeg
   {%- else -%}
-    {{- meta.url -}}{{- meta.opengraph_default -}}
+    {{- meta.url -}}/{{- meta.opengraph_default -}}
   {%- endif -%}"
 />
 <meta
