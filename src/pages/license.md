@@ -9,11 +9,11 @@ layout: page
 
 **Blog posts**
 
-All blog posts by Guido Rota published in this website are published under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+All blog posts in this website are published under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
 **Photos**
 
-All photos and images by Guido Rota published in this website are published under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
+All photographs in this website are published under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
 **Template**
 
