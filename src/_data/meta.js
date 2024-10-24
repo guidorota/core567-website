@@ -10,7 +10,7 @@ export const author = {
 };
 export const creator = {
   name: 'Guido Rota',
-  email: 'hello@guidorota.com',
+  email: 'hello@core567.com',
   social: 'https://x.com/guidorota'
 };
 export const social = {
