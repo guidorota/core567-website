@@ -38,4 +38,4 @@ If I could go back in time, I would spend more time testing out different static
 
 I got quite frustrated after finding issues between the WebC and the Bundle plugins, to the point that I almost considered throwing everything in the bin and starting from scratch with a different tool. The amount of [open issues on the 11ty Github page](https://github.com/11ty/eleventy) also didn't give me good vibes.
 
-But in the end sanity prevailed. I just stuck with what I had somce everything was mostly working, and avoided making this a "forever project".
+But in the end sanity prevailed. I just stuck with what I had since everything was mostly working, and avoided making this a "forever project".
