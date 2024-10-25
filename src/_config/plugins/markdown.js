@@ -39,7 +39,8 @@ export const markdownLib = markdownIt({
         return href.match(/^https?:\/\//);
       },
       attrs: {
-        rel: 'noopener'
+        rel: 'noopener',
+        target: '_blank'
       }
     }
   ])
