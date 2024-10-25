@@ -18,7 +18,7 @@ export const social = {
   x: 'https://x.com/guidorota',
   linkedin: 'https://www.linkedin.com/in/guido-rota-0704b480/'
 };
-export const pathToSvgLogo = 'src/assets/svg/master-logo.svg'; // used for favicon generation
+export const pathToSvgLogo = 'src/assets/svg/main-logo.svg'; // used for favicon generation
 export const themeColor = '#2465BC'; //  Manifest: defines the default theme color for the application
 export const themeBgColor = '#FBFBFB'; // Manifest: defines a placeholder background color for the application page to display before its stylesheet is loaded
 export const opengraph_default = 'assets/images/template/opengraph-default.jpg'; // fallback/default meta image
