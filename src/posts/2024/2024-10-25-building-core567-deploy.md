@@ -1,6 +1,6 @@
 ---
 title: 'Building Core 567 - Part 2'
-description: 'A brief description of how this website is deployed to AWS'
+description: "Uploading data to S3 from Github Actions using Github's OIDC provider"
 date: 2024-10-25
 tags:
   - technology
