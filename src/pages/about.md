@@ -7,7 +7,7 @@ layout: page
 
 <custom-masonry layout="50-50">
   <div class="flow">
-    {% image "./src/assets/images/myself/mugshot.jpg" %}
+    {% image "./src/assets/images/photos/mugshot.jpg" %}
   </div>
   <div class="flow">
     <p>
