@@ -11,6 +11,10 @@ export default {
   ],
   bottom: [
     {
+      text: 'Tags',
+      url: '/tags'
+    },
+    {
       text: 'License',
       url: '/license/'
     }
