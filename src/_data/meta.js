@@ -1,4 +1,4 @@
-export const url = process.env.ELEVENTY_ENV === 'development' ? 'http://localhost:8080' : 'https://core567.com';
+export const url = process.env.ELEVENTY_ENV === 'development' ? 'http://localhost:8080' : 'https://www.core567.com';
 export const siteName = 'Core 567';
 export const siteDescription = 'Thoughts and rants about engineering and life';
 export const siteType = 'Person'; // schema
