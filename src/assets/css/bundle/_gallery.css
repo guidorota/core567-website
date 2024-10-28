@@ -22,3 +22,7 @@ is-land:not(:defined) .gallery dialog + button {
 .gallery dialog img {
   max-block-size: 70vh;
 }
+
+.gallery dialog figcaption {
+  color: var(--color-light);
+}
