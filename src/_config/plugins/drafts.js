@@ -2,7 +2,6 @@ import path from 'node:path';
 
 export const drafts = eleventyConfig => {
   eleventyConfig.addPreprocessor("drafts", "*", (data, _) => {
-    console.log(data.page.inputPath);
     if (isDraft(data) && isProductionBuild()) {
       return false;
     }
