@@ -21,7 +21,7 @@ schema: blog
       %}
         <!-- tags -->
         {% for tag in tags %}{% if tag != "posts" %}
-          <a class="button post-tag" href="/tags/{{ tag }}"> {{ tag }} </a>
+          <a class="button post-tag" href="/tags/{{ tag }}"> {{ tag | upper }} </a>
         {% endif %}{% endfor %}
       {% endif %}
     </p>

@@ -6,7 +6,7 @@ pagination:
   alias: tag
 permalink: /tags/{{ tag }}/
 eleventyComputed:
-  title: '{{ meta.blog.tagSingle }}: {{ tag }}'
+  title: '{{ meta.blog.tagSingle }}: {{ tag | upper }}'
 ---
 
 <custom-masonry layout="50-50">
@@ -32,7 +32,7 @@ eleventyComputed:
           safe
         }}
       >
-        {{ tag }}
+        {{ tag | upper }}
       </a>
     </li>
   {% endfor %}
