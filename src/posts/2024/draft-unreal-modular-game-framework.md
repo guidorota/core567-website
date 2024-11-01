@@ -7,53 +7,81 @@ tags:
   - 'unreal engine'
 ---
 
-The [Lyra sample project](https://dev.epicgames.com/community/learning/paths/Z4/lyra-starter-game) is one of the few resources that I'm constantly referencing as part of learning to build games with Unreal Engine. It's a great resource to discover best practices and get insights on how to use engine features.
+The [Lyra sample project](https://dev.epicgames.com/community/learning/paths/Z4/lyra-starter-game) is one of the resources that I'm constantly referencing as part of learning to build games with Unreal Engine. It's a great showcase of best practices, and allows me to get valuable insights on how to use engine features.
 
-Epic provides [some written documentation about Lyra](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine?application_version=5.0) but it's far from being comprehensive, which means that to get a full understanding of how this game is put together, one has to dive into its source and reference various other documentation sources. For a total beginner this is not an easy task: Lyra uses multiple Unreal Engine subsystem and frameworks in an interconnected way, which means that in order to find how a specific technology is used familiarity with other ancyllary systems that support its implementation in Lyra is required.
+Epic provides [some written documentation about Lyra](https://dev.epicgames.com/documentation/en-us/unreal-engine/lyra-sample-game-in-unreal-engine?application_version=5.0) but unfortunately it's far from being comprehensive, which means that to get a full understanding of how this game is put together one has to dive into its source code and reference various other docs. Since Lyra uses multiple Unreal Engine subsystem and frameworks in an interconnected way, understanding how a certain feature is implemented can be a daunting task that requires familiarity with multiple ancyllary frameworks and plugins.
 
-Let me give a practical example: I wanted to understand how Lyra uses the Ability System, but its implementation is tightly coupled with Game Features and the Modular Gameplay Plugin. Unfortunately for me, I couldn't really find a satisfying primer on how Modular Gameplay works, which meant I had to do my own research. This post documents my findings, accompanied by a [project that showcases an isolated implementation of these systems](https://github.com/guidorota/UE5_ModularFeaturesTest).
+Let me give a practical example: I wanted to understand how Lyra uses the Ability System, but its implementation is tightly coupled with Game Features and the Modular Gameplay Plugin. Unfortunately for me, I couldn't really find a satisfying primer on how Modular Gameplay works, which meant I had to do my own research.
+
+This post and the companion [sample project](https://github.com/guidorota/UE5_ModularFeaturesTest), which I strongly recommend you fork it and check it out if you want to follow along, document my findings.
 
 
 ## Game Features and Modular Gameplay
 
+Game Features and Modular Gameplay plugins allow you to organise code by encapsulating game functionality as separate plugins called _"Game Features"_. This has several benefits:
+* Promotes the creation of smaller and independent features over large monolithic projects.
+* Improved dependency management between different components of a game, avoids accidental coupling that could happen when all code and assets are all kept together.
+* Makes it easy to extract and reuse code and content in other projects.
+
 
 ### Initial setup
 
-Game Features and Modular Gameplay plugins allow you to organise code by encapsulating game functionality as a separate plugin called a "Game Feature". This has several benefits:
-* Promotes the creation of smaller and independent features over large monolithic classes and systems.
-* Improved dependency management between different components of a game, avoids accidental coupling that could happen when all code and assets are all kept together.
+In order to get started, you'll need to enable the `Game Features` and `Modular Gameplay` plugins in your project. Note that for Game Features to work the Asset Manager will need to be configured to support `GameFeatureData` as an asset type. The Unreal Editor should prompt you to auto-generate the necessary configuration when you restart after adding the Game Features plugin.
 
-In order to get started, you'll need to enable the `Game Features` and `Modular Gameplay` plugins. Note that for Game Features to work the Asset Manager will need to be configured to support `GameFeatureData` as an asset type. The Unreal Editor should prompt you to auto-generate the necessary configuration when you restart after adding the Game Features plugin.
-
-If you're using C++, you'll also need to add the `ModularGameplay` module to the build file of your project (`<project-name>.Build.cs`) in order to access `UGameFrameworkComponentManager`.
+If you're using C++, you'll also need to add the `ModularGameplay` module to the build file of your project in order to access `UGameFrameworkComponentManager` (in the companion project this is done in [`ModularFeaturesTest.Build.cs`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/ModularFeaturesTest.Build.cs#L11)).
 
 
 ### UGameFrameworkComponentManager
 
-`UGameFrameworkComponentManager` implements the `Extension Handling System` used to implement extensibility via Game Features. It's worth noting that this manager also implements support for `Initialization States`, but we won't discuss that here since it's not a functionality that's required to implement Modular Gameplay and Game Features.
+`UGameFrameworkComponentManager` implements the _"Extension Handling System"_ used to implement extensibility via Game Features. It's worth noting that this manager also implements support for _"Initialization States"_, but we won't discuss that here since it's not a functionality that's required to implement Modular Gameplay and Game Features.
 
-The `Extension Handling System` manages 2 complementary entities: `Receivers`, and `Extension Handlers`.
+Key to the Extension Handling System are these 2 complementary entities: _"Receivers"_, and _"Extension Handlers"_.
 
 
 #### Receivers
 
-Receivers are Actors that register for extension via `UGameFrameworkComponentManager`. Only registered Actors are eligible to be extended via Game Features.
+Receivers are Actors that register for extension via `UGameFrameworkComponentManager`. Note that only registered Actors are eligible to be extended via Game Features.
 
-Actors register using `AddGameFrameworkComponentReceiver` in `PreInitializeComponents()`, unregister using `RemoveGameFrameworkComponentReceiver` in `EndPlay`, and send events destined for `Extension Handlers` using `SendGameFrameworkComponentExtensionEvent`. An example of this can be seen in [ModularPawn.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/ModularGameplayActorBase/ModularPawn.cpp).
+Actors register using `AddGameFrameworkComponentReceiver` in `PreInitializeComponents()`, unregister using `RemoveGameFrameworkComponentReceiver` in `EndPlay`, and send events destined for `Extension Handlers` using `SendGameFrameworkComponentExtensionEvent`. An example of this can be seen in [`AModularPawn`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/ModularGameplayActorBase/ModularPawn.cpp).
 
-It's worth noting that `ModularPawn` only sends the default `NAME_GameActorReady` event via `SendGameFrameworkComponentExtensionEvent`, but if needed you can send custom events as well (Lyra's `ULyraHeroComponent` sends `NAME_BindInputsNow`, which is then leveraged by `UGameFeatureAction_AddInputBinding`);
+It's worth noting that `ModularPawn` only sends the default `NAME_GameActorReady` event via `SendGameFrameworkComponentExtensionEvent`, but if needed you can send custom events as well. An example of a custom event can be found in Lyra's `ULyraHeroComponent`, which sends `NAME_BindInputsNow` that's later leveraged by `UGameFeatureAction_AddInputBinding`.
 
 
 #### Extension Handlers (Actions)
 
-Extension Handlers register to `UGameFrameworkComponentManager` and execute code that extends Receiver Actors. They're commonly referred to as GameFeatureActions, or Actions. Unreal provide various built-in GameFeatureActions, but you can create your own if you have specific needs.
+Extension Handlers register to `UGameFrameworkComponentManager`, and execute code that extends Receiver Actors. They're commonly referred to as _"GameFeatureActions"_, or _"Actions"_ within the editor's UI. Unreal provide various built-in GameFeatureActions, but you can create your own if you have specific needs.
 
-Registering an Extension Handler can be done by adding a delegate via `AddExtensionHandler` (suitable for running custom logic, see [UGameFeatureAction_AddNiagara.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) or any of Lyra's `UGameFeatureAction_*` classes), or by using `AddComponentRequest` (suitable if you just need to add a Component to an Actor, as done in the built-in `UGameFeatureAction_AddComponents`).
+Registering an Extension Handler can be done in two ways:
+* Adding a delegate via `AddExtensionHandler` for running custom logic (see [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) or any of Lyra's `UGameFeatureAction_*` classes).
+* Using `AddComponentRequest` if you just need to add a Component to an Actor (this is what the built-in `UGameFeatureAction_AddComponents` does).
 
-[UGameFeatureAction_AddNiagara.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) is a basic custom GameFeatureAction that I created for illustration purposes. It spawns a Niagara System, and its basic functionality is implemented as follows:
+The companion project implements a custom GameFeatureAction, called [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp). It spawns a Niagara System, and its basic functionality is implemented as follows:
 * It extends `UGameFeatureAction`.
 * The property `NiagaraSystemList` of type `FGameFeatureNiagaraSystemEntry` stored the Action's configuration. This configuration is validated via the `IsDataValid()` method.
 * `OnGameFeatureActivating` and `OnGameFeatureDeactivating` are used to register and unregister a delegate that is invoked whenever a new GameInstance is started, and to execute on any world that has already been instantiated.
+* `AddToWorld` takes care of registering the delegate that will add/remove the Niagara System via the aforementioned `AddExtensionHandler`.
+
+As mentioned before, other GameFeatureActions examples can be found in engine code and in Lyra by searching for classes that start with `UGameFeatureAction_*`. An interesting one is `UGameFeatureAction_AddInputContextMapping`, which also overrides `OnGameFeatureRegistering` and `OnGameFeatureUnregistering`. These overrides are used to add / remove Input Context Mappings to the user settings for all registered Game Features, even those that are not active yet, hence ensuring that all possible bindings are shown in the game's settings.
+
+
+### Creating a Game Feature
+
+Now let's put in practice what we learnt about Receivers and Extension Handlers by creating an Actor and a Game Feature.
+
+To create a Game Feature, go to `Edit -> Plugins -> Add -> Game Feature`. Note that:
+* You can select between _C++_ and _Content Only_ Game Features.
+* Game Features must be stored in the `Plugins/GameFeatures` subfolder of your project. This folder is automatically selected when creating a new Game Feature, so don't change it.
+
+In the companion project you will be able to find a Game Feature callend `SampleGameFeature`.
+
+There are two main entrypoints to configure a Game Feature:
+* `Edit -> Plugins -> Game Features -> <Your Game Feature Name> -> Edit`: This allows you to configure different aspects of the Game Feature, but the most important ones are _Initial State_ (self explanatory), and _Dependecies_. Dependencies are important because Game Features are not allowed to access assets and resources in other plugins. If you want to access another plugin's assets and resources, you'll need to add it as an explicit dependency.
+* Game Feature Data Asset, which be opened from the Content Browser at `Plugins -> <Your Game Feature Name>Content -> <Your Game Feature Name>`. Here you can manually toggle the _Current State_ of the feature (useful to test stuff), but also add Game Feature _Actions_ (i.e., Extension Handlers with custom configuration).
+
+In the SampleGameFeature in the companion project I added 2 actions: one that adds a `UStaticMeshComponent` using the built-in `UGameFeatureAction_AddComponent` via a custom PawnComponent (implemented in `B_SamplePawnComponent`, [`SamplePawnComponent.cpp`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Plugins/GameFeatures/SampleGameFeature/Source/SampleGameFeatureRuntime/Private/Components/SamplePawnComponent.cpp)), and another one that spanws a Niagara System through the custom [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp).
+
+In order to test the this sample Game Feature, open the project in the Unreal Editor, start a PIE session, open the Game Feature Data Asset, and toggle the Current State to Active. By doing so, a Sphere static mesh and a Niagara effect will be added to the instance of `B_SamplePawn` present in the level. As you might have guessed by this point in time, `B_SamplePawn` is an Actor that's registered with `UGameFrameworkComponentManager` as it extends from `AModularPawn`.
+
 
 
 ## Other resources
