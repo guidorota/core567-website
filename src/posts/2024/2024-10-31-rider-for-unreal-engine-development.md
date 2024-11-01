@@ -4,7 +4,7 @@ description: 'First thoughts after switching from Visual Studio 2022 to Rider fo
 date: 2024-10-31
 tags:
   - technology
-  - 'Unreal Engine'
+  - 'unreal engine'
 ---
 
 As mentioned in the [my first blog](https://www.core567.com/blog/hello-internet/) I recently started learning Unreal Engine using Visual Studio 2022 Community Edition (VS2022) as IDE.
