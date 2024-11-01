@@ -16,22 +16,48 @@ Let me give a practical example: I wanted to understand how Lyra uses the Abilit
 
 ## Game Features and Modular Gameplay
 
+
+### Initial setup
+
 Game Features and Modular Gameplay plugins allow you to organise code by encapsulating game functionality as a separate plugin called a "Game Feature". This has several benefits:
 * Promotes the creation of smaller and independent features over large monolithic classes and systems.
 * Improved dependency management between different components of a game, avoids accidental coupling that could happen when all code and assets are all kept together.
 
-In order to get started, you'll need to enable the following plugins:
-* `Game Features`
-* `Modular Gameplay`
+In order to get started, you'll need to enable the `Game Features` and `Modular Gameplay` plugins. Note that for Game Features to work the Asset Manager will need to be configured to support `GameFeatureData` as an asset type. The Unreal Editor should prompt you to auto-generate the necessary configuration when you restart after adding the Game Features plugin.
 
-Note that you'll also need to add a <ASSET TO SCAN, CONTINUE HERE>
+If you're using C++, you'll also need to add the `ModularGameplay` module to the build file of your project (`<project-name>.Build.cs`) in order to access `UGameFrameworkComponentManager`.
 
-If you're using C++, you'll also need to add the `ModularGameplay` module to the build file of your project (`<project-name>.Build.cs`).
+
+### UGameFrameworkComponentManager
+
+`UGameFrameworkComponentManager` implements the `Extension Handling System` used to implement extensibility via Game Features. It's worth noting that this manager also implements support for `Initialization States`, but we won't discuss that here since it's not a functionality that's required to implement Modular Gameplay and Game Features.
+
+The `Extension Handling System` manages 2 complementary entities: `Receivers`, and `Extension Handlers`.
+
+
+#### Receivers
+
+Receivers are Actors that register for extension via `UGameFrameworkComponentManager`. Only registered Actors are eligible to be extended via Game Features.
+
+Actors register using `AddGameFrameworkComponentReceiver` in `PreInitializeComponents()`, unregister using `RemoveGameFrameworkComponentReceiver` in `EndPlay`, and send events destined for `Extension Handlers` using `SendGameFrameworkComponentExtensionEvent`. An example of this can be seen in [ModularPawn.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/ModularGameplayActorBase/ModularPawn.cpp).
+
+It's worth noting that `ModularPawn` only sends the default `NAME_GameActorReady` event via `SendGameFrameworkComponentExtensionEvent`, but if needed you can send custom events as well (Lyra's `ULyraHeroComponent` sends `NAME_BindInputsNow`, which is then leveraged by `UGameFeatureAction_AddInputBinding`);
+
+
+#### Extension Handlers (Actions)
+
+Extension Handlers register to `UGameFrameworkComponentManager` and execute code that extends Receiver Actors. They're commonly referred to as GameFeatureActions, or Actions. Unreal provide various built-in GameFeatureActions, but you can create your own if you have specific needs.
+
+Registering an Extension Handler can be done by adding a delegate via `AddExtensionHandler` (suitable for running custom logic, see [UGameFeatureAction_AddNiagara.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) or any of Lyra's `UGameFeatureAction_*` classes), or by using `AddComponentRequest` (suitable if you just need to add a Component to an Actor, as done in the built-in `UGameFeatureAction_AddComponents`).
+
+[UGameFeatureAction_AddNiagara.cpp](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) is a basic custom GameFeatureAction that I created for illustration purposes. It spawns a Niagara System, and its basic functionality is implemented as follows:
+* It extends `UGameFeatureAction`.
+* The property `NiagaraSystemList` of type `FGameFeatureNiagaraSystemEntry` stored the Action's configuration. This configuration is validated via the `IsDataValid()` method.
+* `OnGameFeatureActivating` and `OnGameFeatureDeactivating` are used to register and unregister a delegate that is invoked whenever a new GameInstance is started, and to execute on any world that has already been instantiated.
 
 
 ## Other resources
 
 If you want dig deeper, you can find other information about Game Features and Modular Gameplay plugins here:
 * [Game Features and Modular Gameplay @ dev.epicgames.com](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-features-and-modular-gameplay-in-unreal-engine)
-* [A video showcasing Modular Gameplay features in Valley of the Ancient and Fortnite](https://www.youtube.com/watch?v=7F28p564kuY&ab_channel=UnrealEngine)
-
+* [A video showcasing Modular Gameplay features in Valley of the Ancient and Fortnite](https://www.youtube.com/watch?v=7F28p564kuY&ab_channel=UnrealEngine), worth watching if you want to see how Epic is using Modular Gameplay in their own games
