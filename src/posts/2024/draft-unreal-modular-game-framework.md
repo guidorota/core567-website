@@ -66,26 +66,28 @@ As mentioned before, other GameFeatureActions examples can be found in engine co
 
 ### Creating a Game Feature
 
-Now let's put in practice what we learnt about Receivers and Extension Handlers by creating an Actor and a Game Feature.
+Now let's put in practice what we learnt about Receivers and Extension Handlers by creating a Game Feature.
 
-To create a Game Feature, go to `Edit -> Plugins -> Add -> Game Feature`. Note that:
-* You can select between _C++_ and _Content Only_ Game Features.
-* Game Features must be stored in the `Plugins/GameFeatures` subfolder of your project. This folder is automatically selected when creating a new Game Feature, so don't change it.
+To create a Game Feature, from the Unreal Editor select `Edit -> Plugins -> Add -> Game Feature`. Note that:
+* You can choose between _C++_ and _Content Only_ Game Features.
+* Game Features must be located in the `Plugins/GameFeatures` subfolder of your project. This folder is automatically selected when creating a new Game Feature, so don't change it.
 
-In the companion project you will be able to find a Game Feature callend `SampleGameFeature`.
+There are two main configuration settings for Game Features:
+* `Edit -> Plugins -> Game Features -> <Your Game Feature Name> -> Edit`: This allows you to configure different aspects of the Game Feature, but the most important ones are _Initial State_ (self explanatory), and _Dependecies_. Dependencies are noteworthy because by default Game Features are not allowed to access assets and resources from other plugins. If you want to access another plugin's assets and resources, you'll need to add that plugin as an explicit dependency of your Game Feature.
+* The _"Game Feature Data Asset"_, which can be opened at `Plugins -> <Your Game Feature Name>Content -> <Your Game Feature Name>` from the Content Browser. From here you can manually toggle the _Current State_ of the feature (useful to test stuff), but also add Game Feature _Actions_ (i.e., Extension Handlers with custom configuration).
 
-There are two main entrypoints to configure a Game Feature:
-* `Edit -> Plugins -> Game Features -> <Your Game Feature Name> -> Edit`: This allows you to configure different aspects of the Game Feature, but the most important ones are _Initial State_ (self explanatory), and _Dependecies_. Dependencies are important because Game Features are not allowed to access assets and resources in other plugins. If you want to access another plugin's assets and resources, you'll need to add it as an explicit dependency.
-* Game Feature Data Asset, which be opened from the Content Browser at `Plugins -> <Your Game Feature Name>Content -> <Your Game Feature Name>`. Here you can manually toggle the _Current State_ of the feature (useful to test stuff), but also add Game Feature _Actions_ (i.e., Extension Handlers with custom configuration).
+Now let's look at a practical example. In the [companion project](https://github.com/guidorota/UE5_ModularFeaturesTest), there's a Game Feature called `SampleGameFeature`.
 
-In the SampleGameFeature in the companion project I added 2 actions: one that adds a `UStaticMeshComponent` using the built-in `UGameFeatureAction_AddComponent` via a custom PawnComponent (implemented in `B_SamplePawnComponent`, [`SamplePawnComponent.cpp`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Plugins/GameFeatures/SampleGameFeature/Source/SampleGameFeatureRuntime/Private/Components/SamplePawnComponent.cpp)), and another one that spanws a Niagara System through the custom [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp).
+This Game Feature contains two actions: one that adds a `UStaticMeshComponent` using the built-in `UGameFeatureAction_AddComponent` via a custom PawnComponent (`B_SamplePawnComponent`, [`SamplePawnComponent.cpp`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Plugins/GameFeatures/SampleGameFeature/Source/SampleGameFeatureRuntime/Private/Components/SamplePawnComponent.cpp)), and another one that spanws a Niagara System through the custom [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) that I already described above.
 
-In order to test the this sample Game Feature, open the project in the Unreal Editor, start a PIE session, open the Game Feature Data Asset, and toggle the Current State to Active. By doing so, a Sphere static mesh and a Niagara effect will be added to the instance of `B_SamplePawn` present in the level. As you might have guessed by this point in time, `B_SamplePawn` is an Actor that's registered with `UGameFrameworkComponentManager` as it extends from `AModularPawn`.
+In order to test the this sample Game Feature, open the companion project in the Unreal Editor, start a PIE session, open the Game Feature Data Asset, and toggle the Current State to Active. By doing so, a Sphere static mesh and a Niagara effect will be added to the instance of `B_SamplePawn` present in the level. As you might have already guessed, `B_SamplePawn` is an Actor that's registered with `UGameFrameworkComponentManager` by extending `AModularPawn`.
 
 
 
-## Other resources
+## Conclusions and additional resources
+
+Game Features and Modular Gameplay are not hard to understand once showcased in an example project that focusses on them in isolation.
 
 If you want dig deeper, you can find other information about Game Features and Modular Gameplay plugins here:
-* [Game Features and Modular Gameplay @ dev.epicgames.com](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-features-and-modular-gameplay-in-unreal-engine)
-* [A video showcasing Modular Gameplay features in Valley of the Ancient and Fortnite](https://www.youtube.com/watch?v=7F28p564kuY&ab_channel=UnrealEngine), worth watching if you want to see how Epic is using Modular Gameplay in their own games
+* [Game Features and Modular Gameplay @ dev.epicgames.com](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-features-and-modular-gameplay-in-unreal-engine).
+* [A video showcasing Modular Gameplay features in Valley of the Ancient and Fortnite](https://www.youtube.com/watch?v=7F28p564kuY&ab_channel=UnrealEngine), worth watching to get inspiration from how Epic is using Modular Gameplay in their own games.
