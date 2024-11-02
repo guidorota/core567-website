@@ -95,3 +95,4 @@ Game Features and Modular Gameplay are not hard to understand once showcased in 
 If you want dig deeper, you can find other information about Game Features and Modular Gameplay plugins here:
 * [Game Features and Modular Gameplay @ dev.epicgames.com](https://dev.epicgames.com/documentation/en-us/unreal-engine/game-features-and-modular-gameplay-in-unreal-engine).
 * [A video showcasing Modular Gameplay features in Valley of the Ancient and Fortnite](https://www.youtube.com/watch?v=7F28p564kuY&ab_channel=UnrealEngine), worth watching to get inspiration from how Epic is using Modular Gameplay in their own games.
+* [References to Modular Gameplay in the Valley of the Ancient Sample documentation](https://dev.epicgames.com/documentation/en-us/unreal-engine/valley-of-the-ancient-sample-game-for-unreal-engine#buildingmodulargameplay).
