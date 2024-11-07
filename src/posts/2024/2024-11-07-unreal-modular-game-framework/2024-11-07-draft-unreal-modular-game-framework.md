@@ -1,7 +1,7 @@
 ---
 title: 'Unreal Engine Game Features and Modular Gameplay'
 description: "A quick run through Unreal Engine's Game Features and Modular Gameplay"
-date: 2024-10-31
+date: 2024-11-07
 tags:
   - technology
   - 'unreal engine'
