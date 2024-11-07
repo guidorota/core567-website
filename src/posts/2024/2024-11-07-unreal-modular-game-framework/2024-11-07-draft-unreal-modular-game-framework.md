@@ -78,15 +78,15 @@ There are two main configuration settings for Game Features:
 
 Now let's look at a practical example. In the [companion project](https://github.com/guidorota/UE5_ModularFeaturesTest), there's a Game Feature called `SampleGameFeature`.
 
-{% image "./src/posts/2024/unreal-modular-game-framework/SampleGameFeature_DataAsset.png", "SampleGameFeature Data Asset", "SampleGameFeature Data Asset. Notice the two actions configured for this Game Feature." %}
+{% image "./src/posts/2024/2024-11-07-unreal-modular-game-framework/SampleGameFeature_DataAsset.png", "SampleGameFeature Data Asset", "SampleGameFeature Data Asset. Notice the two actions configured for this Game Feature." %}
 
 This Game Feature contains two actions: one that adds a `UStaticMeshComponent` using the built-in `UGameFeatureAction_AddComponent` via a custom PawnComponent (`B_SamplePawnComponent`, [`SamplePawnComponent.cpp`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Plugins/GameFeatures/SampleGameFeature/Source/SampleGameFeatureRuntime/Private/Components/SamplePawnComponent.cpp)), and another one that spanws a Niagara System through the custom [`UGameFeatureAction_AddNiagara`](https://github.com/guidorota/UE5_ModularFeaturesTest/blob/main/Source/ModularFeaturesTest/Private/GameFeatures/GameFeatureAction_AddNiagara.cpp) that I already described above.
 
 In order to test the this sample Game Feature, open the companion project in the Unreal Editor, start a PIE session, open the Game Feature Data Asset, and toggle the Current State to Active. By doing so, a Sphere static mesh and a Niagara effect will be added to the instance of `B_SamplePawn` present in the level. As you might have already guessed, `B_SamplePawn` is an Actor that's registered with `UGameFrameworkComponentManager` by extending `AModularPawn`.
 
-{% image "./src/posts/2024/unreal-modular-game-framework/SampleGameFeature_NotActive.png", "Scene before activating the Game Feature", "Scene before activating the Game Feature. B_SamplePawn has no physical representation." %}
+{% image "./src/posts/2024/2024-11-07-unreal-modular-game-framework/SampleGameFeature_NotActive.png", "Scene before activating the Game Feature", "Scene before activating the Game Feature. B_SamplePawn has no physical representation." %}
 
-{% image "./src/posts/2024/unreal-modular-game-framework/SampleGameFeature_Active.png", "Scene after activating the Game Feature", "Scene after activating the Game Feature. B_SamplePawn gets a mesh and a Niagara effect from SampleGameFeature." %}
+{% image "./src/posts/2024/2024-11-07-unreal-modular-game-framework/SampleGameFeature_Active.png", "Scene after activating the Game Feature", "Scene after activating the Game Feature. B_SamplePawn gets a mesh and a Niagara effect from SampleGameFeature." %}
 
 ## Conclusions and additional resources
 
