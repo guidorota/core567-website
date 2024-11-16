@@ -7,48 +7,48 @@
   "items": [
     {
       "name": "Step min 2",
-      "min": 13,
-      "max": 16
+      "min": 9,
+      "max": 11
     },
     {
       "name": "Step min 1",
-      "min": 16,
-      "max": 22
+      "min": 11,
+      "max": 15
     },
     {
       "name": "Step 0",
-      "min": 19,
-      "max": 28
+      "min": 13,
+      "max": 20
     },
     {
       "name": "Step 1",
-      "min": 23,
-      "max": 35
+      "min": 16,
+      "max": 25
     },
     {
       "name": "Step 2",
-      "min": 27,
-      "max": 44
+      "min": 19,
+      "max": 31
     },
     {
       "name": "Step 3",
-      "min": 33,
-      "max": 55
+      "min": 23,
+      "max": 39
     },
     {
       "name": "Step 4",
-      "min": 40,
-      "max": 68
+      "min": 28,
+      "max": 48
     },
     {
       "name": "Step 5",
-      "min": 47,
-      "max": 86
+      "min": 33,
+      "max": 60
     },
     {
       "name": "Step 6",
-      "min": 56,
-      "max": 107
+      "min": 39,
+      "max": 75
     }
   ]
 }

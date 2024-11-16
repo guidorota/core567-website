@@ -34,7 +34,6 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: var(--font-extra-bold);
-  line-height: 1.2;
   letter-spacing: var(--tracking-s);
 }
 
@@ -54,7 +53,7 @@ h3 {
 p,
 li,
 blockquote:not([class]) {
-  max-inline-size: 65ch;
+  max-inline-size: 100%;
 }
 
 blockquote {
