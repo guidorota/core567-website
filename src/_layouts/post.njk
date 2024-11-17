@@ -3,9 +3,15 @@ layout: base
 schema: blog
 ---
 
-<article class="region blog" style="--region-space-top: var(--space-m-l)">
+<article class="blog" style="--region-space-top: var(--space-m-l)">
   <div class="wrapper flow prose">
-    <h1 class="gradient-text">{{ title }}</h1>
+
+    <header class="full | section" style="--spot-color: var(--color-primary)">
+      <div class="section__inner flow region">
+        <h1 class="text-center text-base-light">{{ title }}</h1>
+      </div>
+      {% svg "divider/high-to-low", null, "seperator" %}
+    </header>
 
     {% if image %}
       <!-- image -->

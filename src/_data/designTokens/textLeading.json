@@ -13,6 +13,10 @@
     {
       "name": "Standard",
       "value": 1.4
+    },
+    {
+      "name": "High",
+      "value": 1.5
     }
   ]
 }

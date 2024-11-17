@@ -9,7 +9,7 @@ layout: page
   <div class="flow">
     {% image "./src/assets/images/photos/mugshot.jpg" %}
   </div>
-  <div class="flow">
+  <div class="flow region">
     <p>
     Hi, I'm Guido Rota, a software engineer by training and passion.
     </p>

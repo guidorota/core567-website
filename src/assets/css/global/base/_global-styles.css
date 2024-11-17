@@ -21,7 +21,6 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   accent-color: var(--color-primary);
-  letter-spacing: var(--tracking);
 }
 
 main {
@@ -34,7 +33,6 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: var(--font-extra-bold);
-  letter-spacing: var(--tracking-s);
 }
 
 h1 {
@@ -54,6 +52,10 @@ p,
 li,
 blockquote:not([class]) {
   max-inline-size: 100%;
+}
+
+p {
+  line-height: var(--leading-high);
 }
 
 blockquote {

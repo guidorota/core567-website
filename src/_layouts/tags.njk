@@ -2,9 +2,16 @@
 layout: base
 ---
 
-<article class="region">
+<article style="--region-space-top: var(--space-m-l);">
   <div class="wrapper flow">
-    <h1 class="gradient-text-linear">{{ title }}</h1>
+
+    <header class="full | section" style="--spot-color: var(--color-primary)">
+      <div class="section__inner flow region">
+        <h1 class="text-center text-base-light">{{ title }}</h1>
+      </div>
+      {% svg "divider/high-to-low", null, "seperator" %}
+    </header>
+
     {{ content | safe }}
   </div>
 </article>
