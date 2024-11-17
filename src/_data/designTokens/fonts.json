@@ -10,18 +10,18 @@
     {
       "name": "Base",
       "description": "Base font stack for body text.",
-      "value": ["Source Sans 3", "sans-serif"]
+      "value": ["\"Source Sans 3\"", "sans-serif"]
     },
     {
       "name": "Mono",
       "description": "Monospace font for code and preformatted text.",
       "value": [
         "ui-monospace",
-        "Cascadia Code",
-        "Source Code Pro",
+        "\"Cascadia Code\"",
+        "\"Source Code Pro\"",
         "Menlo",
         "Consolas",
-        "DejaVu Sans Mono",
+        "\"DejaVu Sans Mono\"",
         "monospace"
       ]
     }
