@@ -8,6 +8,10 @@ export const onlyMarkdown = collection => {
   return collection.getFilteredByGlob('./src/**/*.md');
 };
 
+export const allPages = collection => {
+  return collection.getFilteredByGlob(['./src/**/*.md', './src/**/*.njk']);
+};
+
 /** All tags from all posts as a collection - excluding custom collections */
 export const tagList = collection => {
   const tagsSet = new Set();

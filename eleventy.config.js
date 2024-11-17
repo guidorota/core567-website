@@ -15,7 +15,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // config import
-import {getAllPosts, onlyMarkdown, tagList} from './src/_config/collections.js';
+import {getAllPosts, onlyMarkdown, allPages, tagList} from './src/_config/collections.js';
 import filters from './src/_config/filters.js';
 import plugins from './src/_config/plugins.js';
 import shortcodes from './src/_config/shortcodes.js';
@@ -39,6 +39,7 @@ export default async function (eleventyConfig) {
   //	---------------------  Collections
   eleventyConfig.addCollection('allPosts', getAllPosts);
   eleventyConfig.addCollection('onlyMarkdown', onlyMarkdown);
+  eleventyConfig.addCollection('allPages', allPages);
   eleventyConfig.addCollection('tagList', tagList);
 
   // ---------------------  Plugins
