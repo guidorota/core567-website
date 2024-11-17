@@ -19,21 +19,15 @@ description: 'Sharing thoughts and rants about engineering and life'
 
   <section class="full | region">
     <div class="wrapper flow prose">
-      <h2>What's new?</h2>
 
       <div class="feature |  region">
         <custom-masonry layout="50-50">
-          <!-- loop posts -->
           {% set itemList = collections.allPosts %}
-					{% asyncEach item in itemList.slice(0, 4) %}
-						{% set definedDate = item.date %}
-						{% include "partials/card-blog.njk" %}
-					{% endeach %}
+          {% asyncEach item in itemList %}
+            {% set definedDate = item.date %}
+            {% include "partials/card-blog.njk" %}
+          {% endeach %}
         </custom-masonry>
-      </div>
-
-      <div class="text-right">
-        <a href="blog/index.html">Older posts</a>
       </div>
 
     </div>
