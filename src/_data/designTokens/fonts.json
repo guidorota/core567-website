@@ -5,7 +5,7 @@
     {
       "name": "Display",
       "description": "Display font stack for headings and large text. ",
-      "value": ["Redhat", "sans-serif"]
+      "value": ["Faustina", "serif"]
     },
     {
       "name": "Base",

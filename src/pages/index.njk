@@ -1,17 +1,18 @@
 ---
 layout: base
-permalink: /index.html
 title: 'Core 567'
 description: 'Sharing thoughts and rants about engineering and life'
+permalink: /index.html
+changeFreq: weekly
 ---
 
 <div class="wrapper">
   <header class="full | section" style="--spot-color: var(--color-primary)">
     <div class="section__inner flow region">
-      <h1 class="text-center text-base-light">{{ title }}</h1>
-      <div class="font-display text-center text-base-light">
+      <h1 style="font-family: var(--font-base);" class="text-center text-base-light">{{ title }}</h1>
+      <h3 style="font-family: var(--font-base);" class="text-center text-base-light">
         Thoughts and rants about engineering and life
-      </div>
+      </h3>
     </div>
 
     {% svg "divider/high-to-low", null, "seperator" %}

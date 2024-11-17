@@ -1,7 +1,6 @@
 @import 'tailwindcss/base';
 
 @import 'global/base/_reset.css';
-@import 'global/base/_fonts.css';
 
 @import 'tailwindcss/components';
 

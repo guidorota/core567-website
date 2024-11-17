@@ -2,14 +2,11 @@
 
 <!doctype html>
 <html lang="{{ meta.lang }}">
-  <!-- The order of elements in the head follows recommendations by Harry Roberts. learn more here: https://www.youtube.com/watch?v=MHyAOZ45vnU -->
 
   <head>
-    <!-- 1 charset/viewport -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- 2 title -->
     <title>
       {%- if title -%}
         {{- title -}}
@@ -21,27 +18,22 @@
     <base href="{{ page.url }}" />
     <link href="{{ meta.url }}{{ page.url }}" rel="canonical" />
 
-    <!-- 3 synchronous js  -->
     <script type="module" src="/assets/scripts/bundle/is-land.js"></script>
 
-    <!-- 4 schema settings -->
     {% include "head/schema.njk" %}
-
-    <!-- 5 CSS  -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faustina:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/assets/css/bundle.css?{{ assetHash }}">
 
-    <!-- 6 preloads  -->
     {% include "head/preloads.njk" %}
 
-    <!-- 7 defer  -->
-    <!-- none -->
-
-    <!-- 8 meta tags, icons, open graph etc.  -->
     {% include "head/meta-info.njk" %}
   </head>
 
